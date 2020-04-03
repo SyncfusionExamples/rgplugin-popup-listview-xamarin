@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:local="clr-namespace:ListViewXamarin"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             x:Class="ListViewXamarin.ListViewPage">
+
+    <pages:PopupPage.BindingContext>
+        <local:ContactsViewModel x:Name="vm"/>
+    </pages:PopupPage.BindingContext>
+
+    <pages:PopupPage.Content>
+            <syncfusion:SfListView x:Name="listView" 
+                                   ItemSpacing="1" 
+                                   AutoFitMode="Height" 
+                                   BackgroundColor="AliceBlue"
+                                   ItemsSource="{Binding contactsinfo}"
+                                   Margin="40">
+                <syncfusion:SfListView.ItemTemplate >
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid x:Name="grid" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="1" />
+                                    </Grid.RowDefinitions>
+                                    <Grid RowSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="70" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Source="{Binding ContactImage}"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center"
+                                               HeightRequest="50" WidthRequest="50"/>
+
+                                        <Grid Grid.Column="1"
+                                              RowSpacing="1"
+                                              Padding="10,0,0,0"
+                                              VerticalOptions="Center">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+
+                                            <Label LineBreakMode="NoWrap"
+                                                   TextColor="#474747"
+                                                   Text="{Binding ContactName}">
+
+                                            </Label>
+                                            <Label Grid.Row="1"
+                                                   Grid.Column="0"
+                                                   TextColor="#474747"
+                                                   LineBreakMode="NoWrap"
+                                                   Text="{Binding ContactNumber}">
+
+                                            </Label>
+                                        </Grid>
+                                        <Grid Grid.Row="0"
+                                              Grid.Column="2"
+                                              RowSpacing="0"
+                                              HorizontalOptions="End" VerticalOptions="Start">
+
+                                            <Label LineBreakMode="NoWrap"
+                                                   TextColor="#474747"
+                                                   Text="{Binding ContactType}">
+                                            </Label>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+    </pages:PopupPage.Content>
+</pages:PopupPage>
